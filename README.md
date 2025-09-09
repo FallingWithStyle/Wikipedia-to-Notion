@@ -31,19 +31,38 @@ This script uses a two-phase approach to handle Notion's limitations:
    pip install requests beautifulsoup4 notion-client
    ```
 
-3. **Set up Notion integration**
+3. **Create your own Notion integration** (Required for security)
+   
+   ⚠️ **Important**: Each user must create their own integration for security and privacy. Never share integration tokens or use someone else's credentials.
    - Go to [Notion Integrations](https://www.notion.so/my-integrations)
-   - Create a new "Internal integration"
-   - Copy your integration token
-   - Get your parent page ID from the Notion URL
+   - Click "New integration"
+   - Choose "Internal integration"
+   - Name it (e.g., "Wikipedia Importer")
+   - Select your workspace
+   - Enable capabilities: Read content, Update content, Insert content
+   - Click "Submit"
+   - Copy the "Internal Integration Token" (starts with `secret_`)
 
-4. **Configure the script**
+4. **Get your parent page ID**
+   - Go to the Notion page where you want the database created
+   - Copy the page ID from the URL (long string after the last '/')
+   - Example: `https://notion.so/My-Page-1234567890abcdef`
+   - Page ID: `1234567890abcdef`
+
+5. **Configure the script**
    - Open `WTNI.py`
    - Replace `your-secret-api-token` with your integration token
    - Replace `your-parent-page-id` with your page ID
-   - Grant your integration access to the parent page
+   - Grant your integration access to the parent page (see step 6)
 
-5. **Run the script**
+6. **Grant integration access**
+   - Go to your parent page in Notion
+   - Click "Share" (top right)
+   - Click "Add people, emails, groups, or integrations"
+   - Search for your integration name
+   - Add it with "Can edit" permissions
+
+7. **Run the script**
    ```bash
    python WTNI.py -u https://en.wikipedia.org/wiki/Quantum_mechanics
    ```
@@ -81,8 +100,7 @@ python WTNI.py
 
 ```
 Wikipedia-to-Notion/
-├── WTNI.py              # Main script (clean version)
-├── wtnc3.py             # Personal version (gitignored)
+├── WTNI.py              # Main script (ready to use)
 ├── .gitignore           # Git ignore rules
 └── README.md            # This file
 ```
