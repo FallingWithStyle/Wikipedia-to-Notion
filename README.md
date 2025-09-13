@@ -22,7 +22,7 @@ This script uses a two-phase approach to handle Notion's limitations:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/Wikipedia-to-Notion.git
+   git clone https://github.com/FallingWithStyle/Wikipedia-to-Notion.git
    cd Wikipedia-to-Notion
    ```
 
