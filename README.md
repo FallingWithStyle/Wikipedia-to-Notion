@@ -1,147 +1,157 @@
 # Wikipedia to Notion Importer
 
-A Python script that imports Wikipedia articles into Notion databases with automatic page combination and organized formatting.
+A simple tool that imports Wikipedia articles into your Notion workspace with beautiful formatting and automatic organization.
 
-## Features
+## ✨ What This Does
 
-- 📖 **Complete Article Import** - Fetches full Wikipedia articles with all content
-- 🗃️ **Structured Data** - Extracts infobox data (Born, Awards, etc.) into database properties
-- 🎨 **Organized Formatting** - Uses callouts, dividers, and proper text spacing
-- 🔄 **Auto-Combine** - Automatically combines multiple pages into a single organized page
-- ⚡ **Smart Batching** - Handles Notion's API limits with intelligent content splitting
-- 🛡️ **Error Handling** - Comprehensive validation and error recovery
+- 📖 **Imports Wikipedia articles** directly into your Notion workspace
+- 🎨 **Beautiful formatting** with organized sections, callouts, and dividers
+- 🗃️ **Smart data extraction** - pulls out important info like birth dates, awards, etc.
+- 🔄 **Auto-combines** everything into one clean, readable page
+- ⚡ **Handles large articles** by working around Notion's limits automatically
 
-## How It Works
+## 🚀 Quick Start (Recommended)
 
-This script uses a two-phase approach to handle Notion's limitations:
+### What You Need
+- A computer with Python installed ([Download Python](https://www.python.org/downloads/))
+- A Notion account
+- About 5 minutes to set up
 
-1. **Import Phase**: Creates multiple temporary pages (90 blocks each) to respect Notion's 100 children limit
-2. **Combine Phase**: Automatically combines all pages into a single organized page and archives the temporary pages
+### Step 1: Download and Setup
+1. **Download this project** (click the green "Code" button → "Download ZIP")
+2. **Extract the ZIP file** to a folder on your computer
+3. **Open Terminal/Command Prompt** in that folder
+4. **Run the setup**:
+   - **Mac/Linux**: Double-click `setup.sh` or run `./setup.sh` in terminal
+   - **Windows**: Double-click `setup.bat`
 
-## Quick Start
+### Step 2: Set Up Notion (One-time setup)
+1. **Go to [Notion Integrations](https://www.notion.so/my-integrations)**
+2. **Click "New integration"**
+3. **Fill out the form**:
+   - Name: "Wikipedia Importer" (or whatever you like)
+   - Workspace: Select your workspace
+   - Capabilities: Check "Read content", "Update content", "Insert content"
+4. **Click "Submit"**
+5. **Copy the token** (starts with `secret_`) - you'll need this!
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/FallingWithStyle/Wikipedia-to-Notion.git
-   cd Wikipedia-to-Notion
-   ```
-
-2. **Install dependencies**
-   ```bash
-   pip install requests beautifulsoup4 notion-client
-   ```
-
-3. **Create your own Notion integration** (Required for security)
-   
-   ⚠️ **Important**: Each user must create their own integration for security and privacy. Never share integration tokens or use someone else's credentials.
-   - Go to [Notion Integrations](https://www.notion.so/my-integrations)
-   - Click "New integration"
-   - Choose "Internal integration"
-   - Name it (e.g., "Wikipedia Importer")
-   - Select your workspace
-   - Enable capabilities: Read content, Update content, Insert content
-   - Click "Submit"
-   - Copy the "Internal Integration Token" (starts with `secret_`)
-
-4. **Get your parent page ID**
-   - Go to the Notion page where you want the database created
-   - Copy the page ID from the URL (long string after the last '/')
+### Step 3: Get Your Notion Page ID
+1. **Go to any Notion page** where you want the articles to appear
+2. **Copy the long string** from the URL after the last `/`
    - Example: `https://notion.so/My-Page-1234567890abcdef`
    - Page ID: `1234567890abcdef`
 
-5. **Configure the script**
-   - Open `WTNI.py`
-   - Replace `your-secret-api-token` with your integration token
-   - Replace `your-parent-page-id` with your page ID
-   - Grant your integration access to the parent page (see step 6)
+### Step 4: Grant Access
+1. **On your Notion page**, click "Share" (top right)
+2. **Click "Add people, emails, groups, or integrations"**
+3. **Search for "Wikipedia Importer"** (or whatever you named it)
+4. **Add it with "Can edit" permissions**
 
-6. **Grant integration access**
-   - Go to your parent page in Notion
-   - Click "Share" (top right)
-   - Click "Add people, emails, groups, or integrations"
-   - Search for your integration name
-   - Add it with "Can edit" permissions
+### Step 5: Launch the App
+- **Mac/Linux**: Double-click `run_gui.py` or run `python3 run_gui.py`
+- **Windows**: Double-click `run_gui.bat`
 
-7. **Run the script**
+### Step 6: Import Your First Article
+1. **Paste a Wikipedia URL** (like `https://en.wikipedia.org/wiki/Quantum_mechanics`)
+2. **Enter your Notion token** (the `secret_...` from step 2)
+3. **Enter your page ID** (from step 3)
+4. **Click "Import Article"** and watch the magic happen! ✨
+
+## 🎯 How to Use
+
+### Using the GUI (Recommended)
+The GUI makes everything super easy:
+- **Paste any Wikipedia URL** and click import
+- **Preview articles** before importing
+- **Save your credentials** so you don't have to re-enter them
+- **Watch real-time progress** as articles are imported
+
+### Example Wikipedia URLs to Try
+- https://en.wikipedia.org/wiki/Quantum_mechanics
+- https://en.wikipedia.org/wiki/Artificial_intelligence
+- https://en.wikipedia.org/wiki/Climate_change
+- https://en.wikipedia.org/wiki/Leonardo_da_Vinci
+
+## 🔧 Advanced Usage (Command Line)
+
+If you prefer command line or want to automate imports:
+
+1. **Follow the setup steps above** (steps 1-4)
+2. **Open `WTNI.py`** in a text editor
+3. **Replace the placeholder values**:
+   - `your-secret-api-token` → your actual token
+   - `your-parent-page-id` → your actual page ID
+4. **Run the script**:
    ```bash
-   python WTNI.py -u https://en.wikipedia.org/wiki/Quantum_mechanics
+   python WTNI.py -u https://en.wikipedia.org/wiki/Article_Name
    ```
 
-## Usage
+## 🆘 Troubleshooting
 
-### Command Line
-```bash
-# With URL argument
-python WTNI.py -u https://en.wikipedia.org/wiki/Article_Name
-
-# Interactive mode
-python WTNI.py
-```
-
-### What You Get
-- **Single organized page** with all article content
-- **Database properties** with infobox data (Born, Awards, etc.)
-- **Clean formatting** with callouts, dividers, and proper spacing
-- **No duplicate pages** - temporary pages are automatically archived
-
-## Requirements
-
-- Python 3.7+
-- Notion account with integration access
-- Internet connection for Wikipedia API
-
-## Dependencies
-
-- `requests` - HTTP requests to Wikipedia API
-- `beautifulsoup4` - HTML parsing
-- `notion-client` - Notion API integration
-
-## File Structure
-
-```
-Wikipedia-to-Notion/
-├── WTNI.py              # Main script (ready to use)
-├── .gitignore           # Git ignore rules
-└── README.md            # This file
-```
-
-## Limitations
-
-- Notion's 100 children blocks per page limit
-- Notion's 2000 character limit per rich text block
-- Wikipedia API rate limits
-- Large articles may take time to process
-
-## Troubleshooting
-
-### Common Issues
-
-**"Integration doesn't have access"**
-- Make sure you've shared your parent page with the integration
+### "Integration doesn't have access"
+- Make sure you shared your Notion page with the integration (Step 4 above)
 - Check that the integration has "Can edit" permissions
 
-**"Payload too large" errors**
-- The script handles this automatically with batching
-- If you still get errors, the article might be extremely large
+### "Python not found" or setup errors
+- Make sure Python is installed: [Download Python](https://www.python.org/downloads/)
+- On Mac/Linux, you might need to use `python3` instead of `python`
 
-**"No pages found to combine"**
-- This usually means the import phase failed
-- Check your Notion token and page ID
+### "Invalid URL" errors
+- Make sure you're using a Wikipedia URL that starts with `https://en.wikipedia.org/wiki/`
+- Try a different article if one doesn't work
 
-## Contributing
+### App won't start
+- Make sure you ran the setup script first
+- Try running `python3 gui.py` directly in the terminal to see error messages
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+## 📁 What You Get
 
-## License
+After importing, you'll have:
+- **One beautiful page** with all the article content
+- **Organized sections** with proper headings and formatting
+- **Smart data extraction** - important info like birth dates, awards, etc.
+- **Clean layout** with callouts, dividers, and easy-to-read text
+- **No clutter** - everything is automatically organized
 
-This project is open source. Feel free to use, modify, and distribute.
+## 🔧 Technical Details
 
-## Acknowledgments
+### Requirements
+- Python 3.7 or newer
+- A Notion account
+- Internet connection
 
-- Wikipedia for providing the content
-- Notion for the excellent API
-- The Python community for the amazing libraries
+### How It Works
+This tool is smart about Notion's limits:
+1. **Imports the article** and splits it into manageable chunks
+2. **Creates temporary pages** to work around Notion's 100-block limit
+3. **Combines everything** into one beautiful, organized page
+4. **Cleans up** by removing the temporary pages
+
+### File Structure
+```
+Wikipedia-to-Notion/
+├── gui.py               # Easy-to-use graphical interface
+├── run_gui.py           # Simple launcher script
+├── WTNI.py              # Command-line version
+├── requirements.txt     # What the app needs to run
+├── setup.sh/setup.bat   # One-click setup
+└── README.md            # This guide
+```
+
+## 🤝 Contributing
+
+Found a bug or want to add a feature? Great!
+1. Fork this repository
+2. Make your changes
+3. Test them thoroughly
+4. Submit a pull request
+
+## 📄 License
+
+This project is open source and free to use, modify, and share.
+
+## 🙏 Acknowledgments
+
+- **Wikipedia** for providing amazing content
+- **Notion** for their excellent API
+- **The Python community** for the fantastic libraries

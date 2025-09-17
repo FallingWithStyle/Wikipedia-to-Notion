@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wikipedia to Notion - Setup Guide</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #34495e;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .step {
+            background: #ecf0f1;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        .step-number {
+            background: #3498db;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        .code {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            margin: 10px 0;
+        }
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .screenshot {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin: 15px 0;
+            max-width: 100%;
+        }
+        .button {
+            background: #3498db;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 5px;
+            font-weight: bold;
+        }
+        .button:hover {
+            background: #2980b9;
+        }
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Wikipedia to Notion Setup Guide</h1>
+        <p>This guide will walk you through setting up the Wikipedia to Notion Importer step by step. It should take about 5 minutes!</p>
+
+        <h2>📋 What You'll Need</h2>
+        <ul>
+            <li>A computer with Python installed (<a href="https://www.python.org/downloads/" target="_blank">Download Python</a>)</li>
+            <li>A Notion account (free at <a href="https://notion.so" target="_blank">notion.so</a>)</li>
+            <li>About 5 minutes of your time</li>
+        </ul>
+
+        <h2>🔧 Step 1: Download and Setup</h2>
+        <div class="step">
+            <span class="step-number">1</span>
+            <strong>Download the project</strong>
+            <p>Download the Wikipedia to Notion Importer from GitHub and extract it to a folder on your computer.</p>
+        </div>
+
+        <div class="step">
+            <span class="step-number">2</span>
+            <strong>Run the setup script</strong>
+            <p>Double-click the setup script for your operating system:</p>
+            <ul>
+                <li><strong>Mac/Linux:</strong> Double-click <code>setup.sh</code> or run <code>./setup.sh</code> in terminal</li>
+                <li><strong>Windows:</strong> Double-click <code>setup.bat</code></li>
+            </ul>
+            <div class="success">
+                ✅ The setup script will install everything you need automatically!
+            </div>
+        </div>
+
+        <h2>🔑 Step 2: Create Notion Integration</h2>
+        <div class="step">
+            <span class="step-number">3</span>
+            <strong>Go to Notion Integrations</strong>
+            <p>Open your web browser and go to:</p>
+            <div class="code">https://www.notion.so/my-integrations</div>
+            <p>Or click this button: <a href="https://www.notion.so/my-integrations" target="_blank" class="button">Open Notion Integrations</a></p>
+        </div>
+
+        <div class="step">
+            <span class="step-number">4</span>
+            <strong>Create a new integration</strong>
+            <p>Click the <strong>"New integration"</strong> button and fill out the form:</p>
+            <ul>
+                <li><strong>Name:</strong> "Wikipedia Importer" (or anything you like)</li>
+                <li><strong>Workspace:</strong> Select your workspace</li>
+                <li><strong>Capabilities:</strong> Check these boxes:
+                    <ul>
+                        <li>✅ Read content</li>
+                        <li>✅ Update content</li>
+                        <li>✅ Insert content</li>
+                    </ul>
+                </li>
+            </ul>
+            <p>Then click <strong>"Submit"</strong></p>
+        </div>
+
+        <div class="step">
+            <span class="step-number">5</span>
+            <strong>Copy your integration token</strong>
+            <p>After creating the integration, you'll see a token that starts with <span class="highlight">secret_</span></p>
+            <div class="warning">
+                ⚠️ <strong>Important:</strong> Copy this token and keep it safe! You'll need it to use the app.
+            </div>
+        </div>
+
+        <h2>📄 Step 3: Get Your Notion Page ID</h2>
+        <div class="step">
+            <span class="step-number">6</span>
+            <strong>Go to any Notion page</strong>
+            <p>Open Notion and go to any page where you want the Wikipedia articles to appear. This could be:</p>
+            <ul>
+                <li>Your personal workspace</li>
+                <li>A specific project page</li>
+                <li>Any page you have access to</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <span class="step-number">7</span>
+            <strong>Copy the page ID from the URL</strong>
+            <p>Look at the URL in your browser. It will look something like this:</p>
+            <div class="code">https://notion.so/My-Page-1234567890abcdef</div>
+            <p>Copy the long string after the last <code>/</code> (in this example: <span class="highlight">1234567890abcdef</span>)</p>
+        </div>
+
+        <h2>🔗 Step 4: Grant Access to Your Integration</h2>
+        <div class="step">
+            <span class="step-number">8</span>
+            <strong>Share the page with your integration</strong>
+            <p>On the same Notion page:</p>
+            <ol>
+                <li>Click <strong>"Share"</strong> (top right corner)</li>
+                <li>Click <strong>"Add people, emails, groups, or integrations"</strong></li>
+                <li>Search for <strong>"Wikipedia Importer"</strong> (or whatever you named it)</li>
+                <li>Add it with <strong>"Can edit"</strong> permissions</li>
+            </ol>
+        </div>
+
+        <h2>🎉 Step 5: Launch the App!</h2>
+        <div class="step">
+            <span class="step-number">9</span>
+            <strong>Start the Wikipedia to Notion Importer</strong>
+            <p>Double-click one of these files to start the app:</p>
+            <ul>
+                <li><strong>Mac/Linux:</strong> <code>run_gui.py</code></li>
+                <li><strong>Windows:</strong> <code>run_gui.bat</code></li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <span class="step-number">10</span>
+            <strong>Import your first article!</strong>
+            <p>In the app:</p>
+            <ol>
+                <li>Paste a Wikipedia URL (like <code>https://en.wikipedia.org/wiki/Quantum_mechanics</code>)</li>
+                <li>Enter your Notion token (the <span class="highlight">secret_...</span> from step 5)</li>
+                <li>Enter your page ID (from step 7)</li>
+                <li>Click <strong>"Import Article"</strong> and watch the magic happen! ✨</li>
+            </ol>
+        </div>
+
+        <h2>📚 Example Articles to Try</h2>
+        <div class="step">
+            <p>Here are some interesting Wikipedia articles you can try importing:</p>
+            <ul>
+                <li><a href="https://en.wikipedia.org/wiki/Quantum_mechanics" target="_blank">Quantum mechanics</a> - Physics and quantum theory</li>
+                <li><a href="https://en.wikipedia.org/wiki/Artificial_intelligence" target="_blank">Artificial intelligence</a> - AI and machine learning</li>
+                <li><a href="https://en.wikipedia.org/wiki/Climate_change" target="_blank">Climate change</a> - Environmental science</li>
+                <li><a href="https://en.wikipedia.org/wiki/Leonardo_da_Vinci" target="_blank">Leonardo da Vinci</a> - Renaissance artist and inventor</li>
+                <li><a href="https://en.wikipedia.org/wiki/Photosynthesis" target="_blank">Photosynthesis</a> - Plant biology and chemistry</li>
+            </ul>
+        </div>
+
+        <h2>🆘 Need Help?</h2>
+        <div class="step">
+            <p>If you run into any problems:</p>
+            <ul>
+                <li>Check the <strong>Help tab</strong> in the app for troubleshooting tips</li>
+                <li>Make sure Python is installed on your computer</li>
+                <li>Verify your Notion integration has the correct permissions</li>
+                <li>Try a different Wikipedia article if one doesn't work</li>
+            </ul>
+        </div>
+
+        <div class="success">
+            <h3>🎉 You're all set!</h3>
+            <p>You now have everything you need to import Wikipedia articles into Notion. The app will automatically format everything beautifully and organize it into a single, easy-to-read page.</p>
+        </div>
+    </div>
+</body>
+</html>
