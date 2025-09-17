@@ -454,13 +454,16 @@ Then share a Notion page with your integration:
         
     def open_setup_guide(self):
         """Open the setup guide in browser"""
+        # Try to open the online version first (GitHub Pages)
+        online_url = "https://fallingwithstyle.github.io/Wikipedia-to-Notion/SETUP_GUIDE.html"
+        webbrowser.open(online_url)
+        self.log("📖 Opened setup guide in your browser")
+        
+        # Also try to open local version as backup
         setup_guide_path = os.path.join(os.path.dirname(__file__), "SETUP_GUIDE.html")
         if os.path.exists(setup_guide_path):
+            # Open local version in a new tab
             webbrowser.open(f"file://{setup_guide_path}")
-            self.log("📖 Opened setup guide in your browser")
-        else:
-            webbrowser.open("https://github.com/FallingWithStyle/Wikipedia-to-Notion")
-            self.log("🌐 Opened project page in your browser (setup guide not found locally)")
         
     def test_connection(self):
         """Test Notion connection with current credentials"""

@@ -26,6 +26,8 @@ A simple tool that imports Wikipedia articles into your Notion workspace with be
    - **Windows**: Double-click `setup.bat`
 
 ### Step 2: Set Up Notion (One-time setup)
+📖 **Need visual help?** [View the complete setup guide with screenshots](https://fallingwithstyle.github.io/Wikipedia-to-Notion/SETUP_GUIDE.html)
+
 1. **Go to [Notion Integrations](https://www.notion.so/my-integrations)**
 2. **Click "New integration"**
 3. **Fill out the form**:
@@ -103,6 +105,10 @@ If you prefer command line or want to automate imports:
 ### App won't start
 - Make sure you ran the setup script first
 - Try running `python3 gui.py` directly in the terminal to see error messages
+
+### Need more help?
+- 📖 **[Complete Setup Guide with Screenshots](https://fallingwithstyle.github.io/Wikipedia-to-Notion/SETUP_GUIDE.html)** - Visual step-by-step instructions
+- 💬 **[GitHub Issues](https://github.com/FallingWithStyle/Wikipedia-to-Notion/issues)** - Report bugs or ask questions
 
 ## 📁 What You Get
 
